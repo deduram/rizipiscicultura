@@ -36,12 +36,12 @@
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/leaflet-search.js"></script>
-        <script src="data/parcelas_rizipiscicultura_1.js"></script>
-        <script src="data/perimetre_amenager_2.js"></script>
+        <script src="data/perimetre_amenager_1.js"></script>
+        <script src="data/parcelas_rizipiscicultura_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[11.926109191480936,-15.51427053104798],[11.94033174174286,-15.497078840138595]]);
+        }).fitBounds([[11.697961890372165,-15.773337216553477],[12.153083498753672,-15.22320310745315]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -73,7 +73,56 @@
         });
         layer_Hybrid_0;
         map.addLayer(layer_Hybrid_0);
-        function pop_parcelas_rizipiscicultura_1(feature, layer) {
+        function pop_perimetre_amenager_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">perimetre</th>\
+                        <td>' + (feature.properties['perimetre'] !== null ? autolinker.link(feature.properties['perimetre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">sup_ha</th>\
+                        <td>' + (feature.properties['sup_ha'] !== null ? autolinker.link(feature.properties['sup_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">gid_perimetre</th>\
+                        <td>' + (feature.properties['gid_perimetre'] !== null ? autolinker.link(feature.properties['gid_perimetre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_perimetre_amenager_1_0() {
+            return {
+                pane: 'pane_perimetre_amenager_1',
+                opacity: 1,
+                color: 'rgba(194,55,55,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_perimetre_amenager_1');
+        map.getPane('pane_perimetre_amenager_1').style.zIndex = 401;
+        map.getPane('pane_perimetre_amenager_1').style['mix-blend-mode'] = 'normal';
+        var layer_perimetre_amenager_1 = new L.geoJson(json_perimetre_amenager_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_perimetre_amenager_1',
+            layerName: 'layer_perimetre_amenager_1',
+            pane: 'pane_perimetre_amenager_1',
+            onEachFeature: pop_perimetre_amenager_1,
+            style: style_perimetre_amenager_1_0,
+        });
+        bounds_group.addLayer(layer_perimetre_amenager_1);
+        map.addLayer(layer_perimetre_amenager_1);
+        function pop_parcelas_rizipiscicultura_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">id</th>\
@@ -99,9 +148,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_parcelas_rizipiscicultura_1_0() {
+        function style_parcelas_rizipiscicultura_2_0() {
             return {
-                pane: 'pane_parcelas_rizipiscicultura_1',
+                pane: 'pane_parcelas_rizipiscicultura_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -114,69 +163,20 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_parcelas_rizipiscicultura_1');
-        map.getPane('pane_parcelas_rizipiscicultura_1').style.zIndex = 401;
-        map.getPane('pane_parcelas_rizipiscicultura_1').style['mix-blend-mode'] = 'normal';
-        var layer_parcelas_rizipiscicultura_1 = new L.geoJson(json_parcelas_rizipiscicultura_1, {
+        map.createPane('pane_parcelas_rizipiscicultura_2');
+        map.getPane('pane_parcelas_rizipiscicultura_2').style.zIndex = 402;
+        map.getPane('pane_parcelas_rizipiscicultura_2').style['mix-blend-mode'] = 'normal';
+        var layer_parcelas_rizipiscicultura_2 = new L.geoJson(json_parcelas_rizipiscicultura_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_parcelas_rizipiscicultura_1',
-            layerName: 'layer_parcelas_rizipiscicultura_1',
-            pane: 'pane_parcelas_rizipiscicultura_1',
-            onEachFeature: pop_parcelas_rizipiscicultura_1,
-            style: style_parcelas_rizipiscicultura_1_0,
+            dataVar: 'json_parcelas_rizipiscicultura_2',
+            layerName: 'layer_parcelas_rizipiscicultura_2',
+            pane: 'pane_parcelas_rizipiscicultura_2',
+            onEachFeature: pop_parcelas_rizipiscicultura_2,
+            style: style_parcelas_rizipiscicultura_2_0,
         });
-        bounds_group.addLayer(layer_parcelas_rizipiscicultura_1);
-        map.addLayer(layer_parcelas_rizipiscicultura_1);
-        function pop_perimetre_amenager_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">id</th>\
-                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">perimetre</th>\
-                        <td>' + (feature.properties['perimetre'] !== null ? autolinker.link(feature.properties['perimetre'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">sup_ha</th>\
-                        <td>' + (feature.properties['sup_ha'] !== null ? autolinker.link(feature.properties['sup_ha'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">gid_perimetre</th>\
-                        <td>' + (feature.properties['gid_perimetre'] !== null ? autolinker.link(feature.properties['gid_perimetre'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_perimetre_amenager_2_0() {
-            return {
-                pane: 'pane_perimetre_amenager_2',
-                opacity: 1,
-                color: 'rgba(194,55,55,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 3.0, 
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_perimetre_amenager_2');
-        map.getPane('pane_perimetre_amenager_2').style.zIndex = 402;
-        map.getPane('pane_perimetre_amenager_2').style['mix-blend-mode'] = 'normal';
-        var layer_perimetre_amenager_2 = new L.geoJson(json_perimetre_amenager_2, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_perimetre_amenager_2',
-            layerName: 'layer_perimetre_amenager_2',
-            pane: 'pane_perimetre_amenager_2',
-            onEachFeature: pop_perimetre_amenager_2,
-            style: style_perimetre_amenager_2_0,
-        });
-        bounds_group.addLayer(layer_perimetre_amenager_2);
-        map.addLayer(layer_perimetre_amenager_2);
+        bounds_group.addLayer(layer_parcelas_rizipiscicultura_2);
+        map.addLayer(layer_parcelas_rizipiscicultura_2);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -188,15 +188,15 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/perimetre_amenager_2.png" /> perimetre_amenager': layer_perimetre_amenager_2,'<img src="legend/parcelas_rizipiscicultura_1.png" /> parcelas_rizipiscicultura': layer_parcelas_rizipiscicultura_1,"Hybrid": layer_Hybrid_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/parcelas_rizipiscicultura_2.png" /> parcelas_rizipiscicultura': layer_parcelas_rizipiscicultura_2,'<img src="legend/perimetre_amenager_1.png" /> perimetre_amenager': layer_perimetre_amenager_1,"Hybrid": layer_Hybrid_0,}).addTo(map);
         setBounds();
         var i = 0;
-        layer_parcelas_rizipiscicultura_1.eachLayer(function(layer) {
+        layer_parcelas_rizipiscicultura_2.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['superficia_m²'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['superficia_m²']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_parcelas_rizipiscicultura_1'});
+            layer.bindTooltip((layer.feature.properties['superficia_m²'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['superficia_m²']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_parcelas_rizipiscicultura_2'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -204,21 +204,21 @@
               i++;
         });
         map.addControl(new L.Control.Search({
-            layer: layer_parcelas_rizipiscicultura_1,
+            layer: layer_parcelas_rizipiscicultura_2,
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'superficia_m²'}));
         document.getElementsByClassName('search-button')[0].className +=
          ' fa fa-binoculars';
-        resetLabels([layer_parcelas_rizipiscicultura_1]);
+        resetLabels([layer_parcelas_rizipiscicultura_2]);
         map.on("zoomend", function(){
-            resetLabels([layer_parcelas_rizipiscicultura_1]);
+            resetLabels([layer_parcelas_rizipiscicultura_2]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_parcelas_rizipiscicultura_1]);
+            resetLabels([layer_parcelas_rizipiscicultura_2]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_parcelas_rizipiscicultura_1]);
+            resetLabels([layer_parcelas_rizipiscicultura_2]);
         });
         </script>
     </body>
